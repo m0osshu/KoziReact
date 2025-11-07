@@ -1,0 +1,150 @@
+body {
+  background-image: url("/src/assets/img/fondo-index.jpg");
+  background-size: cover;  
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
+}
+
+.bx-cart{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 4rem;
+  color: white;
+  background: #c9a227;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.bx-cart:hover{
+  background: #1a1a1a;
+  color: black;
+  transform: scale(1.1);
+  color: #c9a227;
+  box-shadow: 0 4px 12px rgba(201, 162, 39, 0.4);
+}
+
+.filtro-catalogo {
+  max-width: 1600px;
+  margin: 120px auto 30px; 
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.filtro-catalogo label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.filtro-catalogo select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background: black;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filtro-catalogo select:hover {
+  color: white;
+  background: black;
+  
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 120px auto 60px; 
+  padding: 0 1.5rem;
+}
+
+.producto-card {
+  background: transparent;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.producto-card:hover {
+  transform: translateY(-6px);
+}
+
+.producto-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  background: transparent;
+}
+
+.producto-nombre {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.producto-precio {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.5rem auto;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: white;
+  width: fit-content;
+}
+
+.producto-acciones {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.btn-comprar {
+  display: inline-block;
+  text-decoration: none;
+  background: white;
+  color: black;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.btn-comprar:hover {
+  display: inline-block;
+  text-decoration: none;
+  background: black;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600; 
+  box-shadow: 0 1px 10px rgba(201, 162, 39, 0.3);  
+}
