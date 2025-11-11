@@ -1,19 +1,18 @@
-import React from 'react';
-import '../styles/pages/Home.css';  // Así debe estar
+import Banner from "../components/Banner/banner.jsx"
+import Navbar from "../components/layout/navbar.jsx" 
+import Footer from "../components/layout/footer.jsx"    
+import '../../src/styles/pages/home.css';
 
 const Home = () => {
-  return (
-    <div className="home-container">
-      <section className="home">
-        <div className="home-content">
-          <a href="/blogs" className="btn">Blogs</a>
+    return (
+        <div className="home-container">
+            <div className="home-content">
+                <Navbar />
+                <Banner />
+                <Footer />
+            </div>
         </div>
-        <div className="home-img">
+    )
+}
 
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default Home;
+export default Home
