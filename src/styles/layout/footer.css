@@ -44,14 +44,14 @@
 }
 
 .footer-section ul li a {
-  color: #cccccc;
+  color: white;
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: 0.9rem;
 }
 
 .footer-section ul li a:hover {
-  color: #ffffff;
+  color: red;
   text-decoration: underline;
 }
 

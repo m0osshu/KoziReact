@@ -7,12 +7,12 @@ const Banner = () => {
   // Array de imágenes para el carrusel
   const slides = [
     {
-      image: "/src/assets/carrusel1.jpg",
+      image: "/src/assets/mialinda2.png",
       title: "kozi",
       subtitle: "la mejor tienda en el mundo!"
     },
     {
-      image: "/src/assets/carrusel2.jpg", // Cambia por tu segunda imagen
+      image: "/src/assets/xd.jpg", // Cambia por tu segunda imagen
       title: "Nuevos Productos",
       subtitle: "Descubre nuestras novedades"
     },
