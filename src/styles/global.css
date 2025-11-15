@@ -1,4 +1,8 @@
-body{
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@400;700&family=Macondo&family=Eagle+Lake&family=Metamorphous&family=New+Rocker&family=Black+Ops+One&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'MedievalSharp', cursive;
+  background-color: red;
 }
