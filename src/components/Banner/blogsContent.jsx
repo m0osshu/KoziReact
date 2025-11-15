@@ -19,11 +19,11 @@ const blogsContent = () => {
         </article>
 
         <article className="post">
-          <img src="/assets/img/blog/blog2.webp" alt="Imagen post2" />
+          <img src="https://res.cloudinary.com/dg2qk2fzs/image/upload/v1763179042/d3fec056e62d232db45b83ece39b4c19_grbveg.jpg" alt="Imagen post2" />
           <div className="contenido">
-            <h2>Mana-sama, El creador del Gothic Lolita</h2>
+            <h2>Winter, integrante de aespa</h2>
             <p>
-              Mana, guitarrista de Malice Mizer, es reconocido mundialmente como el creador del estilo Elegant Gothic Lolita (EGL) a través de su marca Moi-même-Moitié fundada en 1999. Su diseño fusiona moda victoriana con elementos góticos, creando un estilo andrógino único. La marca popularizó el uso de cruces, encajes y el característico "azul Moitié", influenciando permanentemente la moda alternativa global
+              Winter, es reconocida mundialmente como pionera del estilo futurista en el K-Pop a través de los conceptos de SM Entertainment. Su enfoque fusiona moda tecnológica con elementos de alta costura, creando una estética digital única. La artista ha popularizado el uso de siluetas arquitectónicas, materiales innovadores y colores neón, influenciando significativamente la moda contemporánea global. Su evolución constante entre su avatar virtual y presentaciones en vivo demuestra una versatilidad que inspira a nuevas generaciones de artistas internacionales.
             </p>
           </div>
         </article>
@@ -31,7 +31,7 @@ const blogsContent = () => {
         <article className="post">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAgbRxZrFLoGj_rYOVGeJbt6jn9PP5mIs4ww&s" alt="Imagen post3" />
           <div className="contenido">
-            <h2>El renacimiento del VKei en la era digital</h2>
+            <h2>dui, El renacimiento del VKei en la era digital</h2>
             <p>
               Contrario a lo que muchos pensaban, el Visual Kei no desapareció sino que evolucionó. Nuevas bandas como The Gazette, Versailles y Dadaroma han mantenido viva la escena, adaptándose a las plataformas digitales y redes sociales. La estética VKei ha influenciado modas occidentales y subculturas globales, demostrando que la expresión artística sin límites trasciende fronteras. Festivales como V-ROCK Festival continúan reuniendo a тысячи de fans alrededor del mundo.
             </p>

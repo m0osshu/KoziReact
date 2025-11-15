@@ -9,14 +9,15 @@
     text-align: center;
     font-size: 5rem;
     margin-bottom: 3rem;
-    color: white;
+    margin-top: 0.1%;
+    color: black;
 }
 
 .posts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 1rem; 
-    background: transparent;
+    background: red;
     backdrop-filter: blur(20px);
     color: #fff;
 }
