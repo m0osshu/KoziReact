@@ -1,12 +1,14 @@
-import React from 'react';
+import Navbar from "../components/layout/navbar.jsx" 
+import Footer from "../components/layout/footer.jsx"    
+import '../styles/global.css'
 
-const Nosotros = () => {
-  return (
-    <div>
-      <h1>Página Nosotros</h1>
-      <p>Contenido sobre nosotros...</p>
-    </div>
-  );
+const nosotros = () => {
+    return (
+        <div className="ingresar-container">
+            <Navbar />
+            <Footer />
+        </div>
+    )
 }
 
-export default Nosotros;
+export default nosotros

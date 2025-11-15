@@ -1,12 +1,14 @@
-import React from 'react';
+import Navbar from "../components/layout/navbar.jsx" 
+import Footer from "../components/layout/footer.jsx"    
+import '../styles/global.css'
 
-const Ingresar = () => {
-  return (
-    <div>
-      <h1>Página de Ingresar</h1>
-      <p>Contenido de la página de ingresar...</p>
-    </div>
-  );
+const ingresar = () => {
+    return (
+        <div className="ingresar-container">
+            <Navbar />
+            <Footer />
+        </div>
+    )
 }
 
-export default Ingresar;
+export default ingresar

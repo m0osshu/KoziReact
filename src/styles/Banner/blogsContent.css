@@ -3,32 +3,36 @@
     padding: 6rem 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
+    background-image: url('https://res.cloudinary.com/dg2qk2fzs/image/upload/v1763190088/ingresar-fondo_kt0zx3.png') ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .titulo-blog {
     text-align: center;
-    font-size: 5rem;
-    margin-bottom: 3rem;
-    margin-top: 0.1%;
-    color: black;
+    font-size: 4rem;
+    margin-bottom: 5rem;
+    margin-top: 0; 
+    color: white;
 }
 
 .posts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 1rem; 
-    background: red;
+    gap: 0.5rem; 
+    margin-bottom: 6rem;
     backdrop-filter: blur(20px);
-    color: #fff;
+    color: black;
 }
 
 .post {
     display: flex;
     flex-direction: column;
-    background: transparent;
+    background: beige;
     border-radius: 7px;
-    box-shadow: 0 2px 10px black;
-    border: 2px solid rgba(255, 255, 255, .2);    
+
+    border: 2px solid black;    
     overflow: hidden;
     transition: transform 0.3s ease;
     height: 100%; 
@@ -37,6 +41,7 @@
 
 .post:hover {
     transform: translateY(-5px);
+    box-shadow: 0 2px 10px rgb(255, 255, 255);
 }
 
 .post img {
