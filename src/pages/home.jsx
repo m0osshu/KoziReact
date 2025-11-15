@@ -1,7 +1,8 @@
 import Banner from "../components/Banner/banner.jsx"
 import Navbar from "../components/layout/navbar.jsx" 
 import Footer from "../components/layout/footer.jsx"    
-import '../../src/styles/pages/home.css';
+import '../../src/styles/pages/home.css'
+import '../styles/global.css'
 
 const Home = () => {
     return (
