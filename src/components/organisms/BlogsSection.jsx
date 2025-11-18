@@ -1,0 +1,24 @@
+// src/components/organisms/BlogsSection.jsx
+import "../../styles/global.css";
+import "../../styles/components/organisms/BlogsSection.css"; // aquí irá el CSS del blog
+import blogData from "../../data/blogData";
+
+export default function BlogsSection() {
+  return (
+      <main className="blog">
+        <h1 className="titulo-blog">{blogData.titulo}</h1>
+        <section className="posts">
+          {blogData.posts.map(post => (
+            <article key={post.id} className="post">
+              <img src={post.imagen} alt={post.alt} />
+              <div className="contenido">
+                <h2>{post.titulo}</h2>
+                <p>{post.contenido}</p>
+              </div>
+            </article>
+          ))}
+        </section>
+      </main>
+  );
+}
+

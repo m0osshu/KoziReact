@@ -1,0 +1,21 @@
+/* Estilos globales inspirados en el KoziReact de tu amigo */
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=New+Rocker&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'MedievalSharp', cursive;
+  background-image: url("https://res.cloudinary.com/dg2qk2fzs/image/upload/v1763426862/ingresar-fondo_1_fdrvth.png");
+  background-size: cover; /* Asegura que la imagen cubra todo el área */
+  background-attachment: fixed; /* Mantiene la imagen en su sitio al hacer scroll */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center center; /* Centra la imagen */
+}
+
+a {
+  color: inherit;
+}

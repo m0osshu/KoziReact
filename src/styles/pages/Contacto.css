@@ -1,0 +1,12 @@
+/* Styles for the main contact page layout and background */
+.contact-page-body {
+  display: flex;
+  flex-direction: column; /* To stack AboutSection and ContactForm */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("/assets/img/fondo-catalogo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

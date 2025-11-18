@@ -1,0 +1,15 @@
+
+/* O si prefieres un margen específico */
+.registrar-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px; /* Más espacio arriba y abajo */
+  margin: 0;
+  background-image: url("/assets/img/ingresar-fondo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  box-sizing: border-box;
+}

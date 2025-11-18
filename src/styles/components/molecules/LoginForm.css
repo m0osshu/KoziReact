@@ -1,0 +1,158 @@
+/* Global styles for the page background and layout */
+.login-page-background {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.login-page-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Main form container */
+.login-form-wrapper {
+  width: 420px;
+  background: black;
+  border: 1.5px solid white;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+.login-form-wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input fields and select boxes container */
+.login-form__input-box {
+  width: 100%;
+  height: 50px;
+  margin: 20px 0;
+  position: relative;
+}
+
+/* General styles for inputs and selects */
+.login-form__input,
+.login-form__select {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.login-form__input::placeholder {
+  color: #fff;
+}
+
+.login-form__select {
+  cursor: pointer;
+  padding: 14px 20px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.login-form__select option {
+  background: rgba(131, 0, 0, 0.94);
+  color: white;
+  text-align: left;
+}
+
+/* Icon inside input box */
+.login-form__input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+/* Container for select to position the arrow */
+.login-form__select-container {
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+}
+
+.login-form__select-container::after {
+  content: "▼";
+  font-size: 12px;
+  color: white;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Terms and conditions */
+.login-form__terms {
+  display: flex;
+  justify-content: center;
+  font-size: 14.5px;
+  margin: 15px 0;
+}
+
+.login-form__terms label {
+  display: flex;
+  align-items: center;
+}
+
+.login-form__terms input {
+  accent-color: #fff;
+  margin-right: 5px;
+}
+
+/* Submit button */
+.login-form__button {
+  width: 100%;
+  height: 45px;
+  background: red;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.login-form__button:hover {
+  background: white;
+  box-shadow: 0 0 10px white
+}
+
+/* Link to login/register page */
+.login-form__register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.login-form__register-link p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-form__register-link p a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,68 @@
+/* Main wrapper for the contact form */
+.contact-form-wrapper {
+  width: 100%;
+  max-width: 1000px; /* As per your CSS */
+  padding: 25px;
+  border: 1.5px solid white;
+  background: black;
+  border-radius: 16px;
+  color: white;
+  margin: 2rem 0; /* Space between AboutSection and form */
+}
+
+.contact-form-wrapper h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Container for each form field */
+.contact-form__field {
+  margin-bottom: 15px;
+}
+
+.contact-form__field label {
+  display: block;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 8px;
+  text-align: left; /* Align labels to the left for better readability */
+}
+
+/* Styles for input and textarea */
+.contact-form__input,
+.contact-form__textarea {
+  padding: 15px; /* Adjusted padding for better look */
+  border: 0.5px solid white;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(37, 34, 34, 0.795); /* Slight background for visibility */
+  color: white;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Submit button */
+.contact-form__button {
+  width: 100%;
+  height: 45px;
+  background: red;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact-form__button:hover {
+  background: white;
+  box-shadow: 0 0 10px white;
+  color: black;
+}
