@@ -4,13 +4,13 @@
 import "../../styles/components/molecules/ProductCard.css";
 
 export default function ProductCard({ producto }) {
-  const { nombre, precio, imagen } = producto;
+  const { nombre, precio, imagenUrl } = producto;
 
   return (
     <article className="product-card">
       <img
         className="product-card-image"
-        src={imagen}
+        src={imagenUrl}
         alt={nombre}
       />
       <div className="product-card-info">
