@@ -12,6 +12,12 @@ const Registrar = lazy(() => import("../pages/Registrar.jsx"));
 const Restablecer = lazy(() => import("../pages/RestablecerContraseña.jsx"));
 const Productos = lazy(() => import("../pages/Productos.jsx"));
 
+// Páginas admin
+const AdminUsuarios = lazy(() => import("../pages/admin/AdminUsuarios.jsx"));
+const AdminProductos = lazy(() => import("../pages/admin/AdminProductos.jsx"));
+const AdminCategorias = lazy(() => import("../pages/admin/AdminCategorias.jsx"));
+const AdminPedidos = lazy(() => import("../pages/admin/AdminPedidos.jsx"));
+
 // Rutas públicas de Kozi
 export const appRoutes = [
   { path: "/", element: <Home />, showNavbar: true },
@@ -25,6 +31,12 @@ export const appRoutes = [
 
   { path: "/registrar", element: <Registrar />, showNavbar: true },
   { path: "/restablecer", element: <Restablecer />, showNavbar: true },
+
+  // Rutas admin (la protección la hacemos dentro de cada página)
+  { path: "/admin/usuarios", element: <AdminUsuarios />, showNavbar: true },
+  { path: "/admin/productos", element: <AdminProductos />, showNavbar: true },
+  { path: "/admin/categorias", element: <AdminCategorias />, showNavbar: true },
+  { path: "/admin/pedidos", element: <AdminPedidos />, showNavbar: true },
 
   {
     path: "*",

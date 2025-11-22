@@ -24,6 +24,36 @@ const CategoriaService = {
       return null;
     }
   },
+
+  create: async (data) => {
+    try {
+      const res = await axios.post(API_URL, data);
+      return res.data;
+    } catch (error) {
+      console.error("Error al crear categoría:", error);
+      throw error;
+    }
+  },
+
+  update: async (id, data) => {
+    try {
+      const res = await axios.put(`${API_URL}/${id}`, data);
+      return res.data;
+    } catch (error) {
+      console.error(`Error al actualizar categoría ${id}:`, error);
+      throw error;
+    }
+  },
+
+  delete: async (id) => {
+    try {
+      await axios.delete(`${API_URL}/${id}`);
+      return true;
+    } catch (error) {
+      console.error(`Error al eliminar categoría ${id}:`, error);
+      throw error;
+    }
+  },
 };
 
 export default CategoriaService;
