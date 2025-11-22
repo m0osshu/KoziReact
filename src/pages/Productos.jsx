@@ -1,13 +1,11 @@
 // src/pages/Productos.jsx
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
 import "../styles/pages/Productos.css";
 
 import ProductoService from "../services/ProductoService";
 import CategoriaService from "../services/CategoriaService";
 import ProductCard from "../components/molecules/ProductCard";
-import Button from "../components/atoms/Button";
 
 export default function Productos() {
   const [productos, setProductos] = useState([]);
@@ -15,8 +13,6 @@ export default function Productos() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("todas");
   const [cargandoProductos, setCargandoProductos] = useState(true);
   const [cargandoCategorias, setCargandoCategorias] = useState(true);
-
-  const navigate = useNavigate();
 
   // Cargar categorías al entrar
   useEffect(() => {
@@ -50,17 +46,6 @@ export default function Productos() {
 
   const handleCategoriaChange = (e) => {
     setCategoriaSeleccionada(e.target.value);
-  };
-
-  const handleVerDetalle = (id) => {
-    navigate(`/producto/${id}`);
-  };
-
-  const handleAgregarCarrito = (producto) => {
-    // Más adelante aquí conectaremos la lógica real del carrito.
-    // Por ahora solo dejamos un placeholder para que tu profe vea la intención.
-    console.log("Agregar al carrito (pendiente de login):", producto);
-    alert("Esta función se activará cuando integremos el login y el carrito.");
   };
 
   return (
@@ -98,22 +83,6 @@ export default function Productos() {
           productos.map((producto) => (
             <div key={producto.id} className="productos-item">
               <ProductCard producto={producto} />
-
-              <div className="productos-actions">
-                <Button
-                  className="productos-btn productos-btn-detalle"
-                  onClick={() => handleVerDetalle(producto.id)}
-                >
-                  Ver detalle
-                </Button>
-
-                <Button
-                  className="productos-btn productos-btn-carrito"
-                  onClick={() => handleAgregarCarrito(producto)}
-                >
-                  Agregar al carrito
-                </Button>
-              </div>
             </div>
           ))}
       </div>

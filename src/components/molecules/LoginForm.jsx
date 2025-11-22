@@ -1,11 +1,7 @@
 // src/components/molecules/LoginForm.jsx
-// NOTA: clases "login-form", "login-form-title", "login-form-field", "login-form-remember-forgot", "login-form-checkbox", "login-form-actions", "login-form-link" creadas por ia
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import Input from "../atoms/Input";
-import Button from "../atoms/Button";
-import Text from "../atoms/Text";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({
@@ -13,6 +9,9 @@ export default function LoginForm() {
     password: "",
     recordar: false,
   });
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -22,10 +21,16 @@ export default function LoginForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí más adelante se puede conectar con la API de login
-    console.log("Datos de login:", formData);
+
+    try {
+      await login(formData.correo, formData.password);
+      // Opcional: redirigir al home después de logear
+      navigate("/");
+    } catch (error) {
+      alert("Error al iniciar sesión. Verifica tus credenciales.");
+    }
   };
 
   return (
@@ -59,20 +64,28 @@ export default function LoginForm() {
           <i className='bx bxs-lock-alt'></i>
         </div>
 
-        {/* NOTA: Los estilos para "recordar" y "olvidé contraseña" se pueden añadir a LoginForm.css si es necesario. */}
-        {/* Por ahora, usamos la clase de términos como base. */}
         <div className="login-form__terms">
           <label>
-            <input type="checkbox" name="recordar" checked={formData.recordar} onChange={handleChange} />
+            <input
+              type="checkbox"
+              name="recordar"
+              checked={formData.recordar}
+              onChange={handleChange}
+            />
             Recuérdame
           </label>
           <Link to="/restablecer-contraseña">¿Olvidaste tu contraseña?</Link>
         </div>
 
-        <button type="submit" className="login-form__button">Ingresar</button>
+        <button type="submit" className="login-form__button">
+          Ingresar
+        </button>
 
         <div className="login-form__register-link">
-          <p>¿No tienes una cuenta? <Link to="/registrar">Regístrate ahora</Link></p>
+          <p>
+            ¿No tienes una cuenta?{" "}
+            <Link to="/registrar">Regístrate ahora</Link>
+          </p>
         </div>
       </form>
     </div>

@@ -1,13 +1,17 @@
 // src/pages/Producto.jsx
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/global.css";
-import "../styles/pages/Producto.css"; // NOTA: clase "producto-page" creada por ia
+import "../styles/pages/Producto.css";
+
 import ProductoService from "../services/ProductoService";
-import ProductCard from "../components/molecules/ProductCard";
+import ProductDetail from "../components/molecules/ProductDetail";
+import Button from "../components/atoms/Button";
 
 export default function Producto() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
 
@@ -33,14 +37,19 @@ export default function Producto() {
     return (
       <div className="producto-page">
         <p>Producto no encontrado.</p>
+        <Button onClick={() => navigate("/productos")}>
+          Volver a productos
+        </Button>
       </div>
     );
   }
 
   return (
     <div className="producto-page">
-      {/* Por ahora reutilizamos ProductCard, más adelante podemos hacer un layout de detalle más completo */}
-      <ProductCard producto={producto} />
+      <ProductDetail
+        producto={producto}
+        onVolver={() => navigate("/productos")}
+      />
     </div>
   );
 }

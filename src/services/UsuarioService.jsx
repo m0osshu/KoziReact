@@ -3,9 +3,11 @@ import axios from "axios";
 
 const API_URL = "https://koziapi.onrender.com/api/usuarios";
 
-// TODO: reemplazar estos IDs con los que existan en tu BD
-const DEFAULT_ROL_ID = 1;        // Rol "Usuario" normal (no admin)
-const DEFAULT_MEMBRESIA_ID = 1;  // Membresía "Standart" o similar
+// IDs reales en tu BD:
+//  Rol: 1 = Usuario, 2 = Admin
+//  Membresía: 1 = VIP, 2 = STANDARD
+const DEFAULT_ROL_ID = 1;       // Rol "Usuario" normal (no admin)
+const DEFAULT_MEMBRESIA_ID = 2; // Membresía "STANDARD"
 
 const UsuarioService = {
   login: async (email, password) => {

@@ -1,17 +1,19 @@
 // src/components/molecules/RegisterForm.jsx
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 export default function RegisterForm() {
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
-    tipoUsuario: "",
     contrasenia: "",
     confirmarContrasenia: "",
     aceptaTerminos: false,
   });
+
+  const { register } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -21,7 +23,7 @@ export default function RegisterForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.contrasenia !== formData.confirmarContrasenia) {
@@ -34,8 +36,20 @@ export default function RegisterForm() {
       return;
     }
 
-    // Aquí iría el llamado a la API de registro cuando la tengas lista
-    console.log("Datos de registro:", formData);
+    try {
+      await register({
+        nombreUsuario: formData.nombre,
+        email: formData.correo,
+        password: formData.contrasenia,
+        fotoPerfil: null,
+      });
+
+      alert("Cuenta creada correctamente.");
+      // Ya queda logeado por el AuthContext, lo mandamos al home
+      navigate("/");
+    } catch (error) {
+      alert("Error al registrar usuario. Inténtalo más tarde.");
+    }
   };
 
   return (
@@ -69,20 +83,6 @@ export default function RegisterForm() {
           <i className='bx bxs-envelope'></i>
         </div>
 
-        <div className="login-form__select-container">
-          <select
-            name="tipoUsuario"
-            className="login-form__select"
-            value={formData.tipoUsuario}
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>Tipo de usuario</option>
-            <option value="cliente">Cliente</option>
-            <option value="admin">Administrador</option>
-          </select>
-        </div>
-
         <div className="login-form__input-box">
           <input
             type="password"
@@ -111,15 +111,26 @@ export default function RegisterForm() {
 
         <div className="login-form__terms">
           <label>
-            <input type="checkbox" name="aceptaTerminos" checked={formData.aceptaTerminos} onChange={handleChange} required />
+            <input
+              type="checkbox"
+              name="aceptaTerminos"
+              checked={formData.aceptaTerminos}
+              onChange={handleChange}
+              required
+            />
             Acepto los términos y condiciones
           </label>
         </div>
 
-        <button type="submit" className="login-form__button">Registrarse</button>
+        <button type="submit" className="login-form__button">
+          Registrarse
+        </button>
 
         <div className="login-form__register-link">
-          <p>¿Ya tienes una cuenta? <Link to="/ingresar">Inicia sesión</Link></p>
+          <p>
+            ¿Ya tienes una cuenta?{" "}
+            <Link to="/ingresar">Inicia sesión</Link>
+          </p>
         </div>
       </form>
     </div>

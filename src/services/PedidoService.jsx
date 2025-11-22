@@ -3,20 +3,24 @@ import axios from "axios";
 
 const API_URL = "https://koziapi.onrender.com/api/pedidos";
 
-// TODO: reemplazar estos IDs según los catálogos que tengas en la BD
-const ESTADO_CREADO_ID = 1;   // Por ejemplo, estado "creado"
-const ENVIO_DEFAULT_ID = 1;   // Por ejemplo, "Chilexpress" o lo que uses
-const PAGO_DEFAULT_ID = 1;    // Por ejemplo, "Tarjeta", "Transferencia"
+// IDs reales:
+// estado: 1 = Pagado
+// envio: 1 = Chilexpress
+// pago:  2 = Débito
+const ESTADO_PAGADO_ID = 1;
+const ENVIO_DEFAULT_ID = 1;
+const PAGO_DEBITO_ID = 2;
 
 const PedidoService = {
   crearPedido: async ({ total, usuarioId }) => {
     const body = {
-      fechaCreacion: null, // el backend puede manejarlo si quieres
+      // LocalDateTime esperado por el backend
+      fechaCreacion: new Date().toISOString(),
       total,
       usuario: { id: usuarioId },
-      estado: { id: ESTADO_CREADO_ID },
+      estado: { id: ESTADO_PAGADO_ID },
       envio: { id: ENVIO_DEFAULT_ID },
-      pago: { id: PAGO_DEFAULT_ID },
+      pago: { id: PAGO_DEBITO_ID },
     };
 
     const res = await axios.post(API_URL, body);
@@ -25,4 +29,3 @@ const PedidoService = {
 };
 
 export default PedidoService;
-export { ESTADO_CREADO_ID, ENVIO_DEFAULT_ID, PAGO_DEFAULT_ID };
