@@ -1,86 +1,75 @@
 /* src/styles/pages/Productos.css */
-
 .productos-page {
-  padding: 2rem 5%;
-  min-height: 70vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .productos-title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: left;
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  margin: 100px 0 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Filtro por categoría */
 .productos-filtro {
-  margin-bottom: 1.5rem;
+  max-width: 1600px;
+  margin: 30px auto;
+  padding: 0 18px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
   align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .productos-filtro label {
+  font-size: 1rem;
   font-weight: 600;
+  color: #e5e7eb;
 }
 
 .productos-filtro select {
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #111;
-  color: #fff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background: black;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* Grid */
+.productos-filtro select:hover {
+  color: white;
+  background: black;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 30px auto 60px;
+  padding: 0 1.5rem;
 }
 
-/* Cada item (card + botones) */
 .productos-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  background: transparent;
+  transition: transform 0.2s ease;
 }
 
-/* Botones debajo de la card */
-.productos-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
+.productos-item:hover {
+  transform: translateY(-5px);
 }
 
-.productos-btn {
-  flex: 1;
-  padding: 0.5rem 0.8rem;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-/* Detalle = botón claro */
-.productos-btn-detalle {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.productos-btn-detalle:hover {
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-}
-
-/* Carrito = botón rojo */
-.productos-btn-carrito {
-  background-color: red;
-  color: #ffffff;
-}
-
-.productos-btn-carrito:hover {
-  background-color: #ff4444;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+/* Estados de carga y vacío */
+.productos-grid p {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  margin: 2rem 0;
 }
