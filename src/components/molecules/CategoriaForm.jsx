@@ -1,20 +1,36 @@
 // src/components/molecules/CategoriaForm.jsx
+import { useEffect, useState } from "react";
 import AdminFormField from "./AdminFormField";
 
 export default function CategoriaForm({
-  nombre,
-  onChangeNombre,
+  initialData,
   onSubmit,
   onCancel,
   isEditing = false,
 }) {
+  const [nombre, setNombre] = useState("");
+
+  useEffect(() => {
+    if (initialData) {
+      setNombre(initialData.nombre || "");
+    } else {
+      setNombre("");
+    }
+  }, [initialData]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Devolvemos un objeto con nombre
+    onSubmit({ nombre });
+  };
+
   return (
-    <form onSubmit={onSubmit} className="admin-form">
+    <form onSubmit={handleSubmit} className="admin-form">
       <AdminFormField label="Nombre">
         <input
           type="text"
           value={nombre}
-          onChange={(e) => onChangeNombre(e.target.value)}
+          onChange={(e) => setNombre(e.target.value)}
           required
         />
       </AdminFormField>

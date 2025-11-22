@@ -1,22 +1,67 @@
 // src/components/molecules/ProductoForm.jsx
+import { useEffect, useState } from "react";
 import AdminFormField from "./AdminFormField";
 
 export default function ProductoForm({
-  formData,
-  onChange,
+  initialData,
+  categorias = [],
   onSubmit,
   onCancel,
-  isEditing = false,
-  categorias = [],
 }) {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    precio: "",
+    imagenUrl: "",
+    descripcion: "",
+    stock: "",
+    categoriaId: "",
+  });
+
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        nombre: initialData.nombre || "",
+        precio: initialData.precio ?? "",
+        imagenUrl: initialData.imagenUrl || "",
+        descripcion: initialData.descripcion || "",
+        stock: initialData.stock ?? "",
+        categoriaId: initialData.categoriaId ?? "",
+      });
+    } else {
+      setFormData({
+        nombre: "",
+        precio: "",
+        imagenUrl: "",
+        descripcion: "",
+        stock: "",
+        categoriaId: "",
+      });
+    }
+  }, [initialData]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
+
+  const isEditing = !!initialData;
+
   return (
-    <form onSubmit={onSubmit} className="admin-form">
+    <form onSubmit={handleSubmit} className="admin-form">
       <AdminFormField label="Nombre">
         <input
           type="text"
           name="nombre"
           value={formData.nombre}
-          onChange={onChange}
+          onChange={handleChange}
           required
         />
       </AdminFormField>
@@ -26,7 +71,7 @@ export default function ProductoForm({
           type="number"
           name="precio"
           value={formData.precio}
-          onChange={onChange}
+          onChange={handleChange}
           required
           min="0"
         />
@@ -37,7 +82,7 @@ export default function ProductoForm({
           type="number"
           name="stock"
           value={formData.stock}
-          onChange={onChange}
+          onChange={handleChange}
           min="0"
         />
       </AdminFormField>
@@ -47,7 +92,7 @@ export default function ProductoForm({
           type="text"
           name="imagenUrl"
           value={formData.imagenUrl}
-          onChange={onChange}
+          onChange={handleChange}
           required
         />
       </AdminFormField>
@@ -56,7 +101,7 @@ export default function ProductoForm({
         <textarea
           name="descripcion"
           value={formData.descripcion}
-          onChange={onChange}
+          onChange={handleChange}
           required
         />
       </AdminFormField>
@@ -65,7 +110,7 @@ export default function ProductoForm({
         <select
           name="categoriaId"
           value={formData.categoriaId}
-          onChange={onChange}
+          onChange={handleChange}
         >
           <option value="">(sin categoría)</option>
           {categorias.map((c) => (

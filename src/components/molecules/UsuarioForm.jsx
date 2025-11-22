@@ -1,29 +1,55 @@
 // src/components/molecules/UsuarioForm.jsx
+import { useEffect, useState } from "react";
 import AdminFormField from "./AdminFormField";
 
 export default function UsuarioForm({
-  nombreUsuario,
-  email,
-  rolId,
-  membresiaId,
-  activo,
+  initialData,
   roles = [],
   membresias = [],
-  onChangeNombre,
-  onChangeEmail,
-  onChangeRolId,
-  onChangeMembresiaId,
-  onChangeActivo,
   onSubmit,
   onCancel,
 }) {
+  const [formValues, setFormValues] = useState({
+    nombreUsuario: "",
+    email: "",
+    rolId: "",
+    membresiaId: "",
+    activo: true,
+  });
+
+  // Prefill con los datos actuales del usuario
+  useEffect(() => {
+    if (initialData) {
+      setFormValues({
+        nombreUsuario: initialData.nombreUsuario || "",
+        email: initialData.email || "",
+        rolId: initialData.rol?.id?.toString() || "",
+        membresiaId: initialData.membresia?.id?.toString() || "",
+        activo: initialData.activo ?? true,
+      });
+    }
+  }, [initialData]);
+
+  const handleChange = (field) => (value) => {
+    setFormValues((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Devolvemos SOLO los valores, no el evento
+    onSubmit(formValues);
+  };
+
   return (
-    <form onSubmit={onSubmit} className="admin-form">
+    <form onSubmit={handleSubmit} className="admin-form">
       <AdminFormField label="Nombre de usuario">
         <input
           type="text"
-          value={nombreUsuario}
-          onChange={(e) => onChangeNombre(e.target.value)}
+          value={formValues.nombreUsuario}
+          onChange={(e) => handleChange("nombreUsuario")(e.target.value)}
           required
         />
       </AdminFormField>
@@ -31,16 +57,16 @@ export default function UsuarioForm({
       <AdminFormField label="Email">
         <input
           type="email"
-          value={email}
-          onChange={(e) => onChangeEmail(e.target.value)}
+          value={formValues.email}
+          onChange={(e) => handleChange("email")(e.target.value)}
           required
         />
       </AdminFormField>
 
       <AdminFormField label="Rol">
         <select
-          value={rolId}
-          onChange={(e) => onChangeRolId(e.target.value)}
+          value={formValues.rolId}
+          onChange={(e) => handleChange("rolId")(e.target.value)}
           required
         >
           <option value="">Seleccione rol</option>
@@ -54,8 +80,8 @@ export default function UsuarioForm({
 
       <AdminFormField label="Membresía">
         <select
-          value={membresiaId}
-          onChange={(e) => onChangeMembresiaId(e.target.value)}
+          value={formValues.membresiaId}
+          onChange={(e) => handleChange("membresiaId")(e.target.value)}
           required
         >
           <option value="">Seleccione membresía</option>
@@ -69,8 +95,10 @@ export default function UsuarioForm({
 
       <AdminFormField label="Estado">
         <select
-          value={activo ? "true" : "false"}
-          onChange={(e) => onChangeActivo(e.target.value === "true")}
+          value={formValues.activo ? "true" : "false"}
+          onChange={(e) =>
+            handleChange("activo")(e.target.value === "true")
+          }
         >
           <option value="true">Activo</option>
           <option value="false">Inactivo</option>

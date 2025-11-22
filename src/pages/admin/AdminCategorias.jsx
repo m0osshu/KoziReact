@@ -5,7 +5,6 @@ import CategoriaService from "../../services/CategoriaService";
 
 import AdminTable from "../../components/organisms/AdminTable";
 import AdminModal from "../../components/organisms/AdminModal";
-// import AdminFormField from "../../components/molecules/AdminFormField";
 import CategoriaForm from "../../components/molecules/CategoriaForm";
 
 export default function AdminCategorias() {
@@ -56,6 +55,7 @@ export default function AdminCategorias() {
     setEditing(null);
   };
 
+  // values viene de <CategoriaForm />
   const handleSubmit = async (values) => {
     const trimmed = (values.nombre || "").trim();
     if (!trimmed) {
@@ -89,11 +89,12 @@ export default function AdminCategorias() {
       alert("Categoría eliminada.");
       await loadCategorias();
     } catch (error) {
-      alert("Error al eliminar categoría. Revisa si hay productos que la usen.");
+      alert(
+        "Error al eliminar categoría. Revisa si hay productos que la usen."
+      );
     }
   };
 
-  // 🧱 definimos las columnas para AdminTable
   const columns = [
     { key: "id", header: "ID" },
     { key: "nombre", header: "Nombre" },
@@ -128,6 +129,7 @@ export default function AdminCategorias() {
         >
           <CategoriaForm
             initialData={editing}
+            isEditing={!!editing}
             onSubmit={handleSubmit}
             onCancel={closeModal}
           />

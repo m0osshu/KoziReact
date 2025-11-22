@@ -9,7 +9,6 @@ import MembresiaService from "../../services/MembresiaService";
 
 import AdminTable from "../../components/organisms/AdminTable";
 import AdminModal from "../../components/organisms/AdminModal";
-// import AdminFormField from "../../components/molecules/AdminFormField";
 import UsuarioForm from "../../components/molecules/UsuarioForm";
 
 export default function AdminUsuarios() {
@@ -64,6 +63,7 @@ export default function AdminUsuarios() {
     setEditing(null);
   };
 
+  // values viene desde <UsuarioForm />
   const handleSubmit = async (values) => {
     if (!editing) return;
 
