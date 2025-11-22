@@ -80,7 +80,7 @@ export default function Navbar() {
 
         {/* Ícono de carrito con contador (solo si hay items) */}
         <NavLink to="/carrito" className="navbar-cart" onClick={closeGestion}>
-          🛒
+          Carrito
           {totalItems > 0 && (
             <span className="navbar-cart-count">{totalItems}</span>
           )}

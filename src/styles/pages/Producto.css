@@ -1,0 +1,30 @@
+/* src/styles/pages/Producto.css */
+.producto-page {
+  max-width: 1100px;
+  margin: 140px auto 60px;
+  padding: 0 1.5rem;
+  min-height: 100vh;
+}
+
+/* Estados de carga y error */
+.producto-page p {
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .producto-page {
+    margin: 120px auto 40px;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .producto-page {
+    margin: 100px auto 30px;
+    padding: 0 0.5rem;
+  }
+}

@@ -1,0 +1,102 @@
+/* src/styles/components/molecules/Forms.css */
+.admin-form-field {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.admin-form-label {
+    color: #f3f4f6;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.admin-form-field input,
+.admin-form-field select,
+.admin-form-field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #4b5563;
+    background: #1f2937;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.admin-form-field input:focus,
+.admin-form-field select:focus,
+.admin-form-field textarea:focus {
+    outline: none;
+    border-color: white;
+}
+
+.admin-form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Checkbox */
+.admin-form-field input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+/* Botones de formulario */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #4b5563;
+}
+
+.btn-submit {
+    background: white;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: black;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background: white;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: black;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn-submit,
+    .btn-cancel {
+        width: 100%;
+    }
+}

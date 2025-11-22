@@ -10,6 +10,7 @@ import MembresiaService from "../../services/MembresiaService";
 import AdminTable from "../../components/organisms/AdminTable";
 import AdminModal from "../../components/organisms/AdminModal";
 import UsuarioForm from "../../components/molecules/UsuarioForm";
+import "../../styles/pages/Admin.css";
 
 export default function AdminUsuarios() {
   const { usuario } = useAuth();

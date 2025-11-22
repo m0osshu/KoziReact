@@ -1,37 +1,86 @@
-/* Main container for the About section */
+/* src/styles/components/organisms/AboutSection.css */
 .about-section {
-  padding: 25px;
-  margin: 2rem auto;
-  max-width: 1200px;
-  color: white;
-  text-align: center;
-}
-
-.about-section__title {
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 2.5rem;
-  width: 100%;
+    max-width: 1500px;
+    margin: 190px auto 150px;
+    padding: 25px;
+    border-radius: 22px;
 }
 
 .about-section__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+    background: black;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-section__content:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 16px white;
+}
+
+.about-section__title {
+    color: #f3f4f6;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
 }
 
 .about-section__image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  max-width: 500px;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 0 auto 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .about-section__text {
-  text-align: justify;
-  line-height: 1.6;
-  font-size: 1.1rem;
-  max-width: 800px;
+    color: beige;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-section {
+        margin: 80px auto 30px;
+        padding: 20px;
+    }
+    
+    .about-section__content {
+        padding: 30px;
+    }
+    
+    .about-section__title {
+        font-size: 2rem;
+    }
+    
+    .about-section__image {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        margin: 70px auto 20px;
+        padding: 15px;
+    }
+    
+    .about-section__content {
+        padding: 20px;
+    }
+    
+    .about-section__title {
+        font-size: 1.5rem;
+    }
+    
+    .about-section__text {
+        font-size: 1rem;
+    }
 }

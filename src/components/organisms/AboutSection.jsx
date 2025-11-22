@@ -3,6 +3,7 @@
 import aboutData from "../../data/aboutData";
 import "../../styles/components/organisms/AboutSection.css";
 
+
 export default function AboutSection() {
   return (
     <section className="about-section">

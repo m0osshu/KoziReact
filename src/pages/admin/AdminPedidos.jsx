@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import PedidoService from "../../services/PedidoService";
-
+import "../../styles/pages/Admin.css";
 import AdminModal from "../../components/organisms/AdminModal";
 import PedidoEstadoForm from "../../components/molecules/PedidoEstadoForm";
 

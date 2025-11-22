@@ -1,0 +1,131 @@
+/* src/styles/components/molecules/ProductDetail.css */
+.producto-detalle-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.producto-detalle-contenido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.producto-detalle-imagen {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.producto-detalle-imagen img {
+  width: 100%;
+  max-width: 500px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.producto-detalle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.producto-detalle-titulo {
+  font-size: 2.2rem;
+  color: white;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.producto-detalle-acciones {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.producto-btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.producto-btn-volver
+.producto-btn-carrito {
+  background: white;
+  color: black;
+}
+
+
+.producto-btn-carrito:hover {
+  background: black;
+  color: white;  
+  transform: translateY(-2px);
+}
+
+.producto-btn-volver:hover{
+  background: black;
+  color: white;  
+  transform: translateY(-2px);  
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .producto-detalle-layout {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .producto-detalle-contenido {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .producto-detalle-imagen img {
+    height: 300px;
+  }
+  
+  .producto-detalle-titulo {
+    font-size: 1.8rem;
+  }
+  
+  .producto-detalle-precio {
+    font-size: 1.6rem;
+  }
+  
+  .producto-detalle-acciones {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .producto-detalle-layout {
+    padding: 1rem;
+  }
+  
+  .producto-detalle-titulo {
+    font-size: 1.5rem;
+  }
+  
+  .producto-detalle-precio {
+    font-size: 1.4rem;
+  }
+  
+  .producto-btn {
+    padding: 12px 24px;
+  }
+}

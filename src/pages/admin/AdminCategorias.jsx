@@ -6,6 +6,8 @@ import CategoriaService from "../../services/CategoriaService";
 import AdminTable from "../../components/organisms/AdminTable";
 import AdminModal from "../../components/organisms/AdminModal";
 import CategoriaForm from "../../components/molecules/CategoriaForm";
+import "../../styles/pages/Admin.css";
+
 
 export default function AdminCategorias() {
   const { usuario } = useAuth();

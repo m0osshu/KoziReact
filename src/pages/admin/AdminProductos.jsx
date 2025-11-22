@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ProductoService from "../../services/ProductoService";
 import CategoriaService from "../../services/CategoriaService";
 import CategoriassService from "../../services/CategoriassService";
-
+import "../../styles/pages/Admin.css";
 import AdminTable from "../../components/organisms/AdminTable";
 import AdminModal from "../../components/organisms/AdminModal";
 import ProductoForm from "../../components/molecules/ProductoForm";

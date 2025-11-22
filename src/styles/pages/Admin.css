@@ -1,0 +1,128 @@
+/* src/styles/pages/Admin.css */
+.admin-page {
+    max-width: 1500px;
+    margin: 190px auto 150px;
+    padding: 25px;
+    border-radius: 22px;
+}
+
+.admin-page h1 {
+    text-align: center;
+    color: #f3f4f6;
+    margin-bottom: 25px;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.admin-page > p {
+    color: beige;
+    text-align: center;
+    font-style: italic;
+    padding: 40px;
+    font-size: 1rem;
+}
+
+/* Header de página admin */
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #4b5563;
+}
+
+.admin-page-header h1 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+.admin-page-header button {
+    background: white;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-page-header button:hover {
+    background: black;
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* Filtros */
+.admin-filtros {
+    margin-bottom: 30px;
+    padding: 18px;
+    background: black;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-filtros label {
+    color: #f3f4f6;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-filtros input {
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #4b5563;
+    background: #1f2937;
+    color: white;
+    flex: 1;
+    max-width: 300px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-page {
+        margin: 80px auto 30px;
+        padding: 20px;
+    }
+    
+    .admin-page-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .admin-page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .admin-filtros label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .admin-filtros input {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-page {
+        margin: 70px auto 20px;
+        padding: 15px;
+    }
+    
+    .admin-page h1 {
+        font-size: 1.8rem;
+    }
+    
+    .admin-page-header h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,4 +1,6 @@
 // src/components/organisms/AdminTable.jsx
+import "../../styles/components/organisms/AdminTable.css";
+
 export default function AdminTable({
   columns,
   data,

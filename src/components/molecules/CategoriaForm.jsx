@@ -1,6 +1,7 @@
 // src/components/molecules/CategoriaForm.jsx
 import { useEffect, useState } from "react";
 import AdminFormField from "./AdminFormField";
+import "../../styles/components/molecules/Forms.css";
 
 export default function CategoriaForm({
   initialData,

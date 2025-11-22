@@ -1,6 +1,5 @@
 /* src/styles/components/molecules/ProductCard.css */
 .product-card {
-  background: black;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
