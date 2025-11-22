@@ -5,7 +5,8 @@ import CategoriaService from "../../services/CategoriaService";
 
 import AdminTable from "../../components/organisms/AdminTable";
 import AdminModal from "../../components/organisms/AdminModal";
-import AdminFormField from "../../components/molecules/AdminFormField";
+// import AdminFormField from "../../components/molecules/AdminFormField";
+import CategoriaForm from "../../components/molecules/CategoriaForm";
 
 export default function AdminCategorias() {
   const { usuario } = useAuth();
@@ -16,7 +17,6 @@ export default function AdminCategorias() {
 
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState(null);
-  const [nombre, setNombre] = useState("");
 
   // 🔒 Solo admin
   useEffect(() => {
@@ -43,25 +43,21 @@ export default function AdminCategorias() {
 
   const openCreate = () => {
     setEditing(null);
-    setNombre("");
     setShowModal(true);
   };
 
   const openEdit = (cat) => {
     setEditing(cat);
-    setNombre(cat.nombre || "");
     setShowModal(true);
   };
 
   const closeModal = () => {
     setShowModal(false);
     setEditing(null);
-    setNombre("");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const trimmed = nombre.trim();
+  const handleSubmit = async (values) => {
+    const trimmed = (values.nombre || "").trim();
     if (!trimmed) {
       alert("El nombre es obligatorio.");
       return;
@@ -130,25 +126,11 @@ export default function AdminCategorias() {
           title={editing ? "Editar categoría" : "Crear categoría"}
           onClose={closeModal}
         >
-          <form onSubmit={handleSubmit} className="admin-form">
-            <AdminFormField label="Nombre">
-              <input
-                type="text"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                required
-              />
-            </AdminFormField>
-
-            <div className="admin-form-actions">
-              <button type="submit">
-                {editing ? "Actualizar" : "Crear"}
-              </button>
-              <button type="button" onClick={closeModal}>
-                Cancelar
-              </button>
-            </div>
-          </form>
+          <CategoriaForm
+            initialData={editing}
+            onSubmit={handleSubmit}
+            onCancel={closeModal}
+          />
         </AdminModal>
       )}
     </div>

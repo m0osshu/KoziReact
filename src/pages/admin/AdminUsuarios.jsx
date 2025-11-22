@@ -1,87 +1,106 @@
+// src/pages/admin/AdminUsuarios.jsx
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../context/AuthContext";
 import UsuarioService from "../../services/UsuarioService";
+import RolService from "../../services/RolService";
+import MembresiaService from "../../services/MembresiaService";
+
+import AdminTable from "../../components/organisms/AdminTable";
+import AdminModal from "../../components/organisms/AdminModal";
+// import AdminFormField from "../../components/molecules/AdminFormField";
+import UsuarioForm from "../../components/molecules/UsuarioForm";
 
 export default function AdminUsuarios() {
   const { usuario } = useAuth();
   const navigate = useNavigate();
 
   const [usuarios, setUsuarios] = useState([]);
+  const [roles, setRoles] = useState([]);
+  const [membresias, setMembresias] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editing, setEditing] = useState(null);
-  const [formData, setFormData] = useState({
-    nombreUsuario: "",
-    email: "",
-    rolId: 1,
-    membresiaId: 1,
-    activo: true,
-  });
 
-  // Protección de ruta
+  const [showModal, setShowModal] = useState(false);
+  const [editing, setEditing] = useState(null);
+
+  // 🔒 Solo admin
   useEffect(() => {
     if (!usuario || !usuario.rol || usuario.rol.id !== 2) {
       navigate("/");
     }
   }, [usuario, navigate]);
 
-  const loadUsuarios = async () => {
+  const loadData = async () => {
     try {
       setLoading(true);
-      const data = await UsuarioService.getAll();
-      setUsuarios(data || []);
+      const [usuariosRes, rolesRes, membRes] = await Promise.all([
+        UsuarioService.getAll(),
+        RolService.getAll(),
+        MembresiaService.getAll(),
+      ]);
+
+      setUsuarios(usuariosRes || []);
+      setRoles(rolesRes || []);
+      setMembresias(membRes || []);
     } catch (error) {
-      alert("Error al cargar usuarios.");
+      alert("Error al cargar usuarios/roles/membresías.");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadUsuarios();
+    loadData();
   }, []);
 
   const openEdit = (u) => {
     setEditing(u);
-    setFormData({
-      nombreUsuario: u.nombreUsuario,
-      email: u.email,
-      rolId: u.rol?.id ?? 1,
-      membresiaId: u.membresia?.id ?? 1,
-      activo: u.activo ?? true,
-    });
+    setShowModal(true);
   };
 
   const closeModal = () => {
+    setShowModal(false);
     setEditing(null);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "activo") {
-      setFormData((prev) => ({ ...prev, activo: value === "true" }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (values) => {
     if (!editing) return;
 
-    try {
-      await UsuarioService.updatePartial(editing.id, {
-        nombreUsuario: formData.nombreUsuario,
-        email: formData.email,
-        rol: { id: Number(formData.rolId) },
-        membresia: { id: Number(formData.membresiaId) },
-        activo: formData.activo,
-      });
+    const {
+      nombreUsuario,
+      email,
+      rolId,
+      membresiaId,
+      activo,
+    } = values;
 
-      alert("Usuario actualizado correctamente.");
+    const trimmedNombre = (nombreUsuario || "").trim();
+    const trimmedEmail = (email || "").trim();
+
+    if (!trimmedNombre || !trimmedEmail) {
+      alert("Nombre y email son obligatorios.");
+      return;
+    }
+    if (!rolId || !membresiaId) {
+      alert("Debes seleccionar rol y membresía.");
+      return;
+    }
+
+    const body = {
+      nombreUsuario: trimmedNombre,
+      email: trimmedEmail,
+      activo: !!activo,
+      rol: { id: Number(rolId) },
+      membresia: { id: Number(membresiaId) },
+      // NO enviamos password ni fotoPerfil aquí
+    };
+
+    try {
+      await UsuarioService.updatePartial(editing.id, body);
+      alert("Usuario actualizado.");
+      await loadData();
       closeModal();
-      loadUsuarios();
     } catch (error) {
       alert("Error al actualizar usuario.");
     }
@@ -89,126 +108,68 @@ export default function AdminUsuarios() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("¿Seguro que deseas eliminar este usuario?")) return;
+
     try {
       await UsuarioService.delete(id);
       alert("Usuario eliminado.");
-      loadUsuarios();
+      await loadData();
     } catch (error) {
-      alert("Error al eliminar usuario.");
+      alert("Error al eliminar usuario. Revisa si hay relaciones.");
     }
   };
 
+  const columns = [
+    { key: "id", header: "ID" },
+    { key: "nombreUsuario", header: "Usuario" },
+    { key: "email", header: "Email" },
+    { key: "rolNombre", header: "Rol" },
+    { key: "membresiaNombre", header: "Membresía" },
+    { key: "activoTexto", header: "Activo" },
+  ];
+
+  // Para que AdminTable tenga datos "planos"
+  const tableData = usuarios.map((u) => ({
+    ...u,
+    rolNombre: u.rol?.nombreRol || "",
+    membresiaNombre: u.membresia?.tipoMembresia || "",
+    activoTexto: u.activo ? "Activo" : "Inactivo",
+  }));
+
   return (
     <div className="admin-page">
-      <h1>Gestión de usuarios</h1>
+      <div className="admin-page-header">
+        <h1>Gestión de usuarios</h1>
+        {/* No hay botón de crear, solo ver/editar/eliminar */}
+      </div>
 
       {loading ? (
         <p>Cargando usuarios...</p>
       ) : (
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre de usuario</th>
-              <th>Email</th>
-              <th>Rol</th>
-              <th>Membresía</th>
-              <th>Activo</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usuarios.map((u) => (
-              <tr key={u.id}>
-                <td>{u.id}</td>
-                <td>{u.nombreUsuario}</td>
-                <td>{u.email}</td>
-                <td>{u.rol?.nombreRol}</td>
-                <td>{u.membresia?.tipoMembresia}</td>
-                <td>{u.activo ? "Activo" : "Inactivo"}</td>
-                <td>
-                  <button onClick={() => openEdit(u)}>Editar</button>
-                  <button onClick={() => handleDelete(u.id)}>Eliminar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <AdminTable
+          columns={columns}
+          data={tableData}
+          renderActions={(row) => (
+            <>
+              <button onClick={() => openEdit(row)}>Editar</button>
+              <button onClick={() => handleDelete(row.id)}>Eliminar</button>
+            </>
+          )}
+        />
       )}
 
-      {/* Modal de edición */}
-      {editing && (
-        <div className="modal-backdrop">
-          <div className="modal">
-            <h2>Editar usuario</h2>
-            <form onSubmit={handleSubmit} className="modal-form">
-              <label>
-                Nombre de usuario
-                <input
-                  type="text"
-                  name="nombreUsuario"
-                  value={formData.nombreUsuario}
-                  onChange={handleChange}
-                  required
-                />
-              </label>
-
-              <label>
-                Email
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </label>
-
-              <label>
-                Rol
-                <select
-                  name="rolId"
-                  value={formData.rolId}
-                  onChange={handleChange}
-                >
-                  <option value={1}>Usuario</option>
-                  <option value={2}>Admin</option>
-                </select>
-              </label>
-
-              <label>
-                Membresía
-                <select
-                  name="membresiaId"
-                  value={formData.membresiaId}
-                  onChange={handleChange}
-                >
-                  <option value={1}>VIP</option>
-                  <option value={2}>STANDARD</option>
-                </select>
-              </label>
-
-              <label>
-                Estado
-                <select
-                  name="activo"
-                  value={formData.activo ? "true" : "false"}
-                  onChange={handleChange}
-                >
-                  <option value="true">Activo</option>
-                  <option value="false">Inactivo</option>
-                </select>
-              </label>
-
-              <div className="modal-actions">
-                <button type="submit">Guardar</button>
-                <button type="button" onClick={closeModal}>
-                  Cancelar
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+      {showModal && (
+        <AdminModal
+          title={`Editar usuario #${editing?.id}`}
+          onClose={closeModal}
+        >
+          <UsuarioForm
+            initialData={editing}
+            roles={roles}
+            membresias={membresias}
+            onSubmit={handleSubmit}
+            onCancel={closeModal}
+          />
+        </AdminModal>
       )}
     </div>
   );

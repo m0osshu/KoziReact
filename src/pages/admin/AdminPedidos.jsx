@@ -3,6 +3,9 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import PedidoService from "../../services/PedidoService";
 
+import AdminModal from "../../components/organisms/AdminModal";
+import PedidoEstadoForm from "../../components/molecules/PedidoEstadoForm";
+
 export default function AdminPedidos() {
   const { usuario } = useAuth();
   const navigate = useNavigate();
@@ -11,6 +14,8 @@ export default function AdminPedidos() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null);
   const [filtroEmail, setFiltroEmail] = useState("");
+
+  // 👇 estado del formulario de estado/envío/pago
   const [formData, setFormData] = useState({
     estadoId: 1,
     envioId: 1,
@@ -57,22 +62,36 @@ export default function AdminPedidos() {
 
   const closeModal = () => {
     setEditing(null);
+    setFormData({
+      estadoId: 1,
+      envioId: 1,
+      pagoId: 2,
+    });
   };
 
-  const handleChange = (e) => {
+  const handleFormChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: Number(value) }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: Number(value),
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!editing) return;
 
+    const {
+      estadoId = 1,
+      envioId = 1,
+      pagoId = 2,
+    } = formData || {};
+
     try {
       await PedidoService.updatePartial(editing.id, {
-        estado: { id: formData.estadoId },
-        envio: { id: formData.envioId },
-        pago: { id: formData.pagoId },
+        estado: { id: Number(estadoId) },
+        envio: { id: Number(envioId) },
+        pago: { id: Number(pagoId) },
       });
       alert("Pedido actualizado.");
       closeModal();
@@ -156,59 +175,18 @@ export default function AdminPedidos() {
         </table>
       )}
 
-      {/* Modal edición estado/envío/pago */}
       {editing && (
-        <div className="modal-backdrop">
-          <div className="modal">
-            <h2>Editar pedido #{editing.id}</h2>
-            <form onSubmit={handleSubmit} className="modal-form">
-              <label>
-                Estado
-                <select
-                  name="estadoId"
-                  value={formData.estadoId}
-                  onChange={handleChange}
-                >
-                  <option value={1}>Pagado</option>
-                  <option value={2}>Cancelado</option>
-                  <option value={3}>Enviado</option>
-                </select>
-              </label>
-
-              <label>
-                Envío
-                <select
-                  name="envioId"
-                  value={formData.envioId}
-                  onChange={handleChange}
-                >
-                  <option value={1}>Chilexpress</option>
-                  <option value={2}>Correos Chile</option>
-                  <option value={3}>FedEx</option>
-                </select>
-              </label>
-
-              <label>
-                Pago
-                <select
-                  name="pagoId"
-                  value={formData.pagoId}
-                  onChange={handleChange}
-                >
-                  <option value={1}>Crédito</option>
-                  <option value={2}>Débito</option>
-                </select>
-              </label>
-
-              <div className="modal-actions">
-                <button type="submit">Guardar</button>
-                <button type="button" onClick={closeModal}>
-                  Cancelar
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <AdminModal
+          title={`Editar pedido #${editing.id}`}
+          onClose={closeModal}
+        >
+          <PedidoEstadoForm
+            formData={formData}
+            onChange={handleFormChange}
+            onSubmit={handleSubmit}
+            onCancel={closeModal}
+          />
+        </AdminModal>
       )}
     </div>
   );

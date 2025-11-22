@@ -7,7 +7,7 @@ import CategoriassService from "../../services/CategoriassService";
 
 import AdminTable from "../../components/organisms/AdminTable";
 import AdminModal from "../../components/organisms/AdminModal";
-import AdminFormField from "../../components/molecules/AdminFormField";
+import ProductoForm from "../../components/molecules/ProductoForm";
 
 export default function AdminProductos() {
   const { usuario } = useAuth();
@@ -20,6 +20,8 @@ export default function AdminProductos() {
 
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState(null);
+
+  // 👇 estado del formulario que usará <ProductoForm />
   const [formData, setFormData] = useState({
     nombre: "",
     precio: "",
@@ -74,10 +76,7 @@ export default function AdminProductos() {
     return rel?.categoria?.id ?? "";
   };
 
-  const actualizarRelacionCategoria = async (
-    productoId,
-    nuevaCategoriaId
-  ) => {
+  const actualizarRelacionCategoria = async (productoId, nuevaCategoriaId) => {
     const relActual = getRelacionPorProductoId(productoId);
 
     if (!nuevaCategoriaId) {
@@ -105,7 +104,7 @@ export default function AdminProductos() {
     }
   };
 
-  // modal handlers
+  // 🔹 Handlers modal
   const openCreate = () => {
     setEditing(null);
     setFormData({
@@ -120,14 +119,15 @@ export default function AdminProductos() {
   };
 
   const openEdit = (p) => {
+    const categoriaId = getCategoriaIdDeProducto(p.id);
     setEditing(p);
     setFormData({
-      nombre: p.nombre,
-      precio: p.precio,
-      imagenUrl: p.imagenUrl,
-      descripcion: p.descripcion,
+      nombre: p.nombre ?? "",
+      precio: p.precio ?? "",
+      imagenUrl: p.imagenUrl ?? "",
+      descripcion: p.descripcion ?? "",
       stock: p.stock ?? "",
-      categoriaId: getCategoriaIdDeProducto(p.id),
+      categoriaId: categoriaId === "" ? "" : categoriaId,
     });
     setShowModal(true);
   };
@@ -135,9 +135,18 @@ export default function AdminProductos() {
   const closeModal = () => {
     setShowModal(false);
     setEditing(null);
+    setFormData({
+      nombre: "",
+      precio: "",
+      imagenUrl: "",
+      descripcion: "",
+      stock: "",
+      categoriaId: "",
+    });
   };
 
-  const handleChange = (e) => {
+  // 🔹 Cambios en inputs del formulario
+  const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -145,31 +154,41 @@ export default function AdminProductos() {
     }));
   };
 
+  // 🔹 Submit del formulario (crear / editar)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const {
+      nombre,
+      precio,
+      imagenUrl,
+      descripcion,
+      stock,
+      categoriaId,
+    } = formData;
+
     const body = {
-      nombre: formData.nombre,
-      precio: Number(formData.precio),
-      imagenUrl: formData.imagenUrl,
-      descripcion: formData.descripcion,
-      stock: formData.stock === "" ? null : Number(formData.stock),
+      nombre: nombre,
+      precio: Number(precio),
+      imagenUrl: imagenUrl,
+      descripcion: descripcion,
+      stock:
+        stock === "" || stock === null || stock === undefined
+          ? null
+          : Number(stock),
     };
 
     try {
       if (editing) {
         await ProductoService.update(editing.id, body);
-        await actualizarRelacionCategoria(
-          editing.id,
-          formData.categoriaId
-        );
+        await actualizarRelacionCategoria(editing.id, categoriaId);
         alert("Producto actualizado.");
       } else {
         const nuevo = await ProductoService.create(body);
-        if (formData.categoriaId) {
+        if (categoriaId) {
           await CategoriassService.create({
             productoId: nuevo.id,
-            categoriaId: Number(formData.categoriaId),
+            categoriaId: Number(categoriaId),
           });
         }
         alert("Producto creado.");
@@ -183,8 +202,7 @@ export default function AdminProductos() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("¿Seguro que deseas eliminar este producto?"))
-      return;
+    if (!window.confirm("¿Seguro que deseas eliminar este producto?")) return;
 
     try {
       await ProductoService.delete(id);
@@ -201,19 +219,12 @@ export default function AdminProductos() {
 
   // 🧱 Config de columnas para AdminTable (Atomic)
   const columns = [
-    {
-      key: "id",
-      header: "ID",
-    },
-    {
-      key: "nombre",
-      header: "Nombre",
-    },
+    { key: "id", header: "ID" },
+    { key: "nombre", header: "Nombre" },
     {
       key: "precio",
       header: "Precio",
-      render: (row) =>
-        `$${Number(row.precio).toLocaleString("es-CL")}`,
+      render: (row) => `$${Number(row.precio).toLocaleString("es-CL")}`,
     },
     {
       key: "stock",
@@ -233,11 +244,7 @@ export default function AdminProductos() {
           <img
             src={row.imagenUrl}
             alt={row.nombre}
-            style={{
-              width: 40,
-              height: 40,
-              objectFit: "cover",
-            }}
+            style={{ width: 40, height: 40, objectFit: "cover" }}
           />
         ) : (
           "-"
@@ -260,12 +267,8 @@ export default function AdminProductos() {
           data={productos}
           renderActions={(row) => (
             <>
-              <button onClick={() => openEdit(row)}>
-                Editar
-              </button>
-              <button onClick={() => handleDelete(row.id)}>
-                Eliminar
-              </button>
+              <button onClick={() => openEdit(row)}>Editar</button>
+              <button onClick={() => handleDelete(row.id)}>Eliminar</button>
             </>
           )}
         />
@@ -273,94 +276,17 @@ export default function AdminProductos() {
 
       {showModal && (
         <AdminModal
-          title={
-            editing ? "Editar producto" : "Crear producto"
-          }
+          title={editing ? "Editar producto" : "Crear producto"}
           onClose={closeModal}
         >
-          <form
+          <ProductoForm
+            formData={formData}
+            onChange={handleFormChange}
             onSubmit={handleSubmit}
-            className="admin-form"
-          >
-            <AdminFormField label="Nombre">
-              <input
-                type="text"
-                name="nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                required
-              />
-            </AdminFormField>
-
-            <AdminFormField label="Precio">
-              <input
-                type="number"
-                name="precio"
-                value={formData.precio}
-                onChange={handleChange}
-                required
-                min="0"
-              />
-            </AdminFormField>
-
-            <AdminFormField label="Stock">
-              <input
-                type="number"
-                name="stock"
-                value={formData.stock}
-                onChange={handleChange}
-                min="0"
-              />
-            </AdminFormField>
-
-            <AdminFormField label="Imagen (URL)">
-              <input
-                type="text"
-                name="imagenUrl"
-                value={formData.imagenUrl}
-                onChange={handleChange}
-                required
-              />
-            </AdminFormField>
-
-            <AdminFormField label="Descripción">
-              <textarea
-                name="descripcion"
-                value={formData.descripcion}
-                onChange={handleChange}
-                required
-              />
-            </AdminFormField>
-
-            <AdminFormField label="Categoría">
-              <select
-                name="categoriaId"
-                value={formData.categoriaId}
-                onChange={handleChange}
-              >
-                <option value="">
-                  (sin categoría)
-                </option>
-                {categorias.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.nombre}
-                  </option>
-                ))}
-              </select>
-            </AdminFormField>
-
-            <div className="admin-form-actions">
-              <button type="submit">
-                {editing ? "Actualizar" : "Crear"}
-              </button>
-              <button
-                type="button"
-                onClick={closeModal}
-              >
-                Cancelar
-              </button>
-            </div>
-          </form>
+            onCancel={closeModal}
+            isEditing={!!editing}
+            categorias={categorias}
+          />
         </AdminModal>
       )}
     </div>
