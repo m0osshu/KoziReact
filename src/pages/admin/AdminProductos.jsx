@@ -19,17 +19,7 @@ export default function AdminProductos() {
   const [loading, setLoading] = useState(true);
 
   const [showModal, setShowModal] = useState(false);
-  const [editing, setEditing] = useState(null);
-
-  // 👇 estado del formulario que usará <ProductoForm />
-  const [formData, setFormData] = useState({
-    nombre: "",
-    precio: "",
-    imagenUrl: "",
-    descripcion: "",
-    stock: "",
-    categoriaId: "",
-  });
+  const [editing, setEditing] = useState(null); // producto que se edita o null
 
   // 🔒 Solo admin
   useEffect(() => {
@@ -106,27 +96,14 @@ export default function AdminProductos() {
 
   // 🔹 Handlers modal
   const openCreate = () => {
-    setEditing(null);
-    setFormData({
-      nombre: "",
-      precio: "",
-      imagenUrl: "",
-      descripcion: "",
-      stock: "",
-      categoriaId: "",
-    });
+    setEditing(null); // creación
     setShowModal(true);
   };
 
   const openEdit = (p) => {
     const categoriaId = getCategoriaIdDeProducto(p.id);
-    setEditing(p);
-    setFormData({
-      nombre: p.nombre ?? "",
-      precio: p.precio ?? "",
-      imagenUrl: p.imagenUrl ?? "",
-      descripcion: p.descripcion ?? "",
-      stock: p.stock ?? "",
+    setEditing({
+      ...p,
       categoriaId: categoriaId === "" ? "" : categoriaId,
     });
     setShowModal(true);
@@ -135,29 +112,10 @@ export default function AdminProductos() {
   const closeModal = () => {
     setShowModal(false);
     setEditing(null);
-    setFormData({
-      nombre: "",
-      precio: "",
-      imagenUrl: "",
-      descripcion: "",
-      stock: "",
-      categoriaId: "",
-    });
   };
 
-  // 🔹 Cambios en inputs del formulario
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // 🔹 Submit del formulario (crear / editar)
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  // 🔹 Recibe los valores desde <ProductoForm />
+  const handleSubmit = async (values) => {
     const {
       nombre,
       precio,
@@ -165,13 +123,13 @@ export default function AdminProductos() {
       descripcion,
       stock,
       categoriaId,
-    } = formData;
+    } = values;
 
     const body = {
-      nombre: nombre,
+      nombre,
       precio: Number(precio),
-      imagenUrl: imagenUrl,
-      descripcion: descripcion,
+      imagenUrl,
+      descripcion,
       stock:
         stock === "" || stock === null || stock === undefined
           ? null
@@ -217,7 +175,7 @@ export default function AdminProductos() {
     }
   };
 
-  // 🧱 Config de columnas para AdminTable (Atomic)
+  // 🧱 Config de columnas para AdminTable
   const columns = [
     { key: "id", header: "ID" },
     { key: "nombre", header: "Nombre" },
@@ -280,12 +238,10 @@ export default function AdminProductos() {
           onClose={closeModal}
         >
           <ProductoForm
-            formData={formData}
-            onChange={handleFormChange}
+            initialData={editing}
+            categorias={categorias}
             onSubmit={handleSubmit}
             onCancel={closeModal}
-            isEditing={!!editing}
-            categorias={categorias}
           />
         </AdminModal>
       )}

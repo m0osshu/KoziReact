@@ -17,6 +17,7 @@ export default function ProductoForm({
     categoriaId: "",
   });
 
+  // Cargamos datos iniciales al abrir el modal
   useEffect(() => {
     if (initialData) {
       setFormData({
