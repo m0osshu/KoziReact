@@ -1,0 +1,86 @@
+/* src/styles/pages/Productos.css */
+
+.productos-page {
+  padding: 2rem 5%;
+  min-height: 70vh;
+}
+
+.productos-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* Filtro por categoría */
+.productos-filtro {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.productos-filtro label {
+  font-weight: 600;
+}
+
+.productos-filtro select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #111;
+  color: #fff;
+}
+
+/* Grid */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Cada item (card + botones) */
+.productos-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Botones debajo de la card */
+.productos-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.productos-btn {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+/* Detalle = botón claro */
+.productos-btn-detalle {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.productos-btn-detalle:hover {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* Carrito = botón rojo */
+.productos-btn-carrito {
+  background-color: red;
+  color: #ffffff;
+}
+
+.productos-btn-carrito:hover {
+  background-color: #ff4444;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+}

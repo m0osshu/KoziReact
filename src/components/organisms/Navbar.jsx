@@ -9,6 +9,7 @@ export default function Navbar() {
         kÖzi
       </NavLink>
       <nav className="navbar">
+        <NavLink to="/productos">Productos</NavLink>
         <NavLink to="/ingresar">Ingresar</NavLink>
         <NavLink to="/blog">Blogs</NavLink>
         <NavLink to="/contacto">Nosotros</NavLink>

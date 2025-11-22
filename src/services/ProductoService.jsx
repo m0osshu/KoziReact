@@ -15,10 +15,19 @@ const ProductoService = {
     }
   },
 
-  // OJO: esta ruta es un supuesto típico. Si en tu API usaste otro path, después lo ajustamos.
-  getByCategoria: async (categoria) => {
+  getUltimos6: async () => {
     try {
-      const res = await axios.get(`${API_URL}/categoria/${categoria}`);
+      const res = await axios.get(`${API_URL}/ultimos6`);
+      return res.data;
+    } catch (error) {
+      console.error("Error al obtener últimos 6 productos:", error);
+      return [];
+    }
+  },
+
+  getByCategoria: async (categoriaId) => {
+    try {
+      const res = await axios.get(`${API_URL}/categoria/${categoriaId}`);
       return res.data;
     } catch (error) {
       console.error("Error al obtener productos por categoría:", error);

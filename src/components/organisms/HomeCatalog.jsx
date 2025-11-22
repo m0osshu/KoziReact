@@ -12,7 +12,7 @@ export default function HomeCatalog() {
 
   useEffect(() => {
     const cargarProductos = async () => {
-      const data = await ProductoService.getAll();
+      const data = await ProductoService.getUltimos6();
       setProductos(data || []);
       setCargando(false);
     };
@@ -22,7 +22,7 @@ export default function HomeCatalog() {
 
   return (
     <section className="home-catalog">
-      <h2 className="home-catalog-title">Catálogo Destacado</h2>
+      <h2 className="home-catalog-title">Productos más vendidos</h2>
 
       <div className="home-catalog-grid">
         {cargando && <p>Cargando productos...</p>}

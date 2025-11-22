@@ -42,3 +42,41 @@
     margin: 0;
   }
   
+  .product-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.product-card-actions button {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Botón de detalle */
+.btn-detalle {
+  background: #333;
+  color: #fff;
+}
+
+.btn-detalle:hover {
+  background: #555;
+  transform: translateY(-1px);
+}
+
+/* Botón de carrito */
+.btn-carrito {
+  background: #8c1aff; /* tono violeta más kozi */
+  color: #fff;
+}
+
+.btn-carrito:hover {
+  background: #6a0fd1;
+  transform: translateY(-1px);
+}
+
