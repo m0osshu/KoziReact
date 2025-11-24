@@ -1,4 +1,3 @@
-// src/pages/Productos.jsx
 import { useEffect, useState } from "react";
 import "../styles/global.css";
 import "../styles/pages/Productos.css";
@@ -14,7 +13,6 @@ export default function Productos() {
   const [cargandoProductos, setCargandoProductos] = useState(true);
   const [cargandoCategorias, setCargandoCategorias] = useState(true);
 
-  // Cargar categorías al entrar
   useEffect(() => {
     const cargarCategorias = async () => {
       const data = await CategoriaService.getAll();
@@ -25,7 +23,6 @@ export default function Productos() {
     cargarCategorias();
   }, []);
 
-  // Cargar productos (todos o por categoría)
   useEffect(() => {
     const cargarProductos = async () => {
       setCargandoProductos(true);
@@ -52,7 +49,6 @@ export default function Productos() {
     <div className="productos-page">
       <h1 className="productos-title">Productos</h1>
 
-      {/* Filtro por categoría */}
       <div className="productos-filtro">
         <label htmlFor="categoria-select">Filtrar por categoría:</label>
         <select
@@ -70,7 +66,6 @@ export default function Productos() {
         </select>
       </div>
 
-      {/* Grid de productos */}
       <div className="productos-grid">
         {cargandoProductos && <p>Cargando productos...</p>}
 

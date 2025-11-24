@@ -19,7 +19,6 @@ export default function AdminCategorias() {
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState(null);
 
-  // 🔒 Solo admin
   useEffect(() => {
     if (!usuario || !usuario.rol || usuario.rol.id !== 2) {
       navigate("/");
@@ -57,7 +56,6 @@ export default function AdminCategorias() {
     setEditing(null);
   };
 
-  // values viene de <CategoriaForm />
   const handleSubmit = async (values) => {
     const trimmed = (values.nombre || "").trim();
     if (!trimmed) {

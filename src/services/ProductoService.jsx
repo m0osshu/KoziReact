@@ -1,4 +1,3 @@
-// src/services/ProductoService.jsx
 import axios from "axios";
 
 const API_URL = "https://koziapi.onrender.com/api/productos";

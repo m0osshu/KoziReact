@@ -1,4 +1,3 @@
-// src/App.jsx
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Suspense } from "react";
 import Navbar from "./components/organisms/Navbar";
@@ -15,7 +14,6 @@ function Layout() {
       {showNavbar && <Navbar />}
 
       <main>
-        {/* NOTA: clase "loading" creada por ia */}
         <Suspense fallback={<div className="loading">Cargando...</div>}>
           <Routes>
             {appRoutes.map(({ path, element }) => (

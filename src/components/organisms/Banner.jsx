@@ -1,11 +1,9 @@
-// src/components/organisms/Banner.jsx
 import { useState, useEffect } from "react";
-import "../../styles/components/organisms/Banner.css"; // aquí tu compañero pondrá el CSS del banner
+import "../../styles/components/organisms/Banner.css"; 
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Array de imágenes para el carrusel
   const slides = [
     {
       image: "https://a-static.besthdwallpaper.com/aespa-s-karina-in-drama-album-the-giant-vers-shoot-wallpaper-2560x1440-123426_51.jpg",
@@ -29,11 +27,10 @@ const Banner = () => {
     }    
   ];
 
-  // Cambio automático de slides
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Cambia cada 5 segundos
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -48,7 +45,6 @@ const Banner = () => {
 
   return (
     <div className="banner">
-      {/* Contenedor del carrusel */}
       <div 
         className="banner-slides"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -67,7 +63,6 @@ const Banner = () => {
         ))}
       </div>
 
-      {/* Botones de navegación */}
       <button className="banner-btn banner-btn-prev" onClick={prevSlide}>
         ‹
       </button>
@@ -75,7 +70,6 @@ const Banner = () => {
         ›
       </button>
 
-      {/* Indicadores */}
       <div className="banner-indicators">
         {slides.map((_, index) => (
           <button

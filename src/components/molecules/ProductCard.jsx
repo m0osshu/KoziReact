@@ -1,7 +1,3 @@
-// src/components/molecules/ProductCard.jsx
-// NOTA: clases "product-card", "product-card-image", "product-card-info"
-// y "product-card-actions", "btn-detalle", "btn-carrito" ya definidas en el CSS
-
 import { useNavigate } from "react-router-dom";
 import "../../styles/components/molecules/ProductCard.css";
 import { useAuth } from "../../context/AuthContext";

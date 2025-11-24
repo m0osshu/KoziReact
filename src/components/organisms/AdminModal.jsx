@@ -1,4 +1,3 @@
-// src/components/organisms/AdminModal.jsx
 import "../../styles/components/organisms/AdminModal.css";
 
 export default function AdminModal({

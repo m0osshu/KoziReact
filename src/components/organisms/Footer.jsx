@@ -1,4 +1,3 @@
-// src/components/organisms/Footer.jsx
 import { FaTwitter, FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 import "../../styles/components/organisms/Footer.css";
 

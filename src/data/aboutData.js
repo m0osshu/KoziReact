@@ -1,5 +1,3 @@
-// src/data/aboutData.js
-
 const aboutData = {
   titulo: "Nosotros",
   alt: "Imagen representativa de la tienda Közi",

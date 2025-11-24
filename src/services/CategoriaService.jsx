@@ -1,7 +1,5 @@
-// src/services/CategoriaService.jsx
 import axios from "axios";
 
-// URL base de tu API de Kozi en Render
 const API_URL = "https://koziapi.onrender.com/api/categorias";
 
 const CategoriaService = {

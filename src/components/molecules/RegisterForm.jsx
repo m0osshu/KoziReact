@@ -1,4 +1,3 @@
-// src/components/molecules/RegisterForm.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -45,7 +44,6 @@ export default function RegisterForm() {
       });
 
       alert("Cuenta creada correctamente.");
-      // Ya queda logeado por el AuthContext, lo mandamos al home
       navigate("/");
     } catch (error) {
       alert("Error al registrar usuario. Inténtalo más tarde.");

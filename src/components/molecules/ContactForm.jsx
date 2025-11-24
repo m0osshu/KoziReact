@@ -1,5 +1,3 @@
-// src/components/molecules/ContactForm.jsx
-
 import { useState } from "react";
 import "../../styles/components/molecules/ContactForm.css";
 
@@ -20,7 +18,6 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Más adelante aquí se puede conectar a una API / backend de contacto
     console.log("Mensaje de contacto:", formData);
   };
 

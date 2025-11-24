@@ -1,4 +1,3 @@
-// src/components/organisms/Navbar.jsx
 import { NavLink, useNavigate } from "react-router-dom";
 import "../../styles/components/organisms/Navbar.css";
 import { useAuth } from "../../context/AuthContext";
@@ -40,7 +39,6 @@ export default function Navbar() {
           Nosotros
         </NavLink>
 
-        {/* Dropdown Gestión solo para admin */}
         {usuario?.rol?.id === 2 && (
           <div
             className={`navbar-dropdown ${isGestionOpen ? "open" : ""}`}
@@ -78,7 +76,6 @@ export default function Navbar() {
           </div>
         )}
 
-        {/* Ícono de carrito con contador (solo si hay items) */}
         <NavLink to="/carrito" className="navbar-cart" onClick={closeGestion}>
           Carrito
           {totalItems > 0 && (
@@ -86,7 +83,6 @@ export default function Navbar() {
           )}
         </NavLink>
 
-        {/* Ingresar / Desconectar según sesión */}
         {usuario ? (
           <button
             type="button"

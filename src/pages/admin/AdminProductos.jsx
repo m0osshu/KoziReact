@@ -19,9 +19,8 @@ export default function AdminProductos() {
   const [loading, setLoading] = useState(true);
 
   const [showModal, setShowModal] = useState(false);
-  const [editing, setEditing] = useState(null); // producto que se edita o null
+  const [editing, setEditing] = useState(null); 
 
-  // 🔒 Solo admin
   useEffect(() => {
     if (!usuario || !usuario.rol || usuario.rol.id !== 2) {
       navigate("/");
@@ -50,7 +49,6 @@ export default function AdminProductos() {
     loadData();
   }, []);
 
-  // helpers relación producto - categoría
   const getRelacionPorProductoId = (productoId) =>
     relacionesCategorias.find(
       (r) => r.producto && r.producto.id === productoId
@@ -94,9 +92,8 @@ export default function AdminProductos() {
     }
   };
 
-  // 🔹 Handlers modal
   const openCreate = () => {
-    setEditing(null); // creación
+    setEditing(null); 
     setShowModal(true);
   };
 
@@ -114,7 +111,6 @@ export default function AdminProductos() {
     setEditing(null);
   };
 
-  // 🔹 Recibe los valores desde <ProductoForm />
   const handleSubmit = async (values) => {
     const {
       nombre,
@@ -175,7 +171,6 @@ export default function AdminProductos() {
     }
   };
 
-  // 🧱 Config de columnas para AdminTable
   const columns = [
     { key: "id", header: "ID" },
     { key: "nombre", header: "Nombre" },

@@ -1,6 +1,3 @@
-// src/components/molecules/ResetPasswordForm.jsx
-// NOTA: clases "reset-form", "reset-form-title", "reset-form-instruction", "reset-form-field", "reset-form-actions", "reset-form-link" creadas por ia
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Input from "../atoms/Input";
@@ -13,7 +10,6 @@ export default function ResetPasswordForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí iría el llamado a la API para enviar el mail de restablecimiento
     console.log("Solicitud de restablecer contraseña para:", correo);
   };
 

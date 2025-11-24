@@ -1,4 +1,3 @@
-// src/components/molecules/LoginForm.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -26,7 +25,6 @@ export default function LoginForm() {
 
     try {
       await login(formData.correo, formData.password);
-      // Opcional: redirigir al home después de logear
       navigate("/");
     } catch (error) {
       alert("Error al iniciar sesión. Verifica tus credenciales.");

@@ -24,7 +24,6 @@ export default function AdminUsuarios() {
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState(null);
 
-  // 🔒 Solo admin
   useEffect(() => {
     if (!usuario || !usuario.rol || usuario.rol.id !== 2) {
       navigate("/");
@@ -64,7 +63,6 @@ export default function AdminUsuarios() {
     setEditing(null);
   };
 
-  // values viene desde <UsuarioForm />
   const handleSubmit = async (values) => {
     if (!editing) return;
 
@@ -94,7 +92,6 @@ export default function AdminUsuarios() {
       activo: !!activo,
       rol: { id: Number(rolId) },
       membresia: { id: Number(membresiaId) },
-      // NO enviamos password ni fotoPerfil aquí
     };
 
     try {
@@ -128,7 +125,6 @@ export default function AdminUsuarios() {
     { key: "activoTexto", header: "Activo" },
   ];
 
-  // Para que AdminTable tenga datos "planos"
   const tableData = usuarios.map((u) => ({
     ...u,
     rolNombre: u.rol?.nombreRol || "",
@@ -140,7 +136,6 @@ export default function AdminUsuarios() {
     <div className="admin-page">
       <div className="admin-page-header">
         <h1>Gestión de usuarios</h1>
-        {/* No hay botón de crear, solo ver/editar/eliminar */}
       </div>
 
       {loading ? (

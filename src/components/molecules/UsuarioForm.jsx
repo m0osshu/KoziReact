@@ -1,4 +1,3 @@
-// src/components/molecules/UsuarioForm.jsx
 import { useEffect, useState } from "react";
 import AdminFormField from "./AdminFormField";
 import "../../styles/components/molecules/Forms.css";
@@ -18,7 +17,6 @@ export default function UsuarioForm({
     activo: true,
   });
 
-  // Prefill con los datos actuales del usuario
   useEffect(() => {
     if (initialData) {
       setFormValues({
@@ -40,7 +38,6 @@ export default function UsuarioForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Devolvemos SOLO los valores, no el evento
     onSubmit(formValues);
   };
 

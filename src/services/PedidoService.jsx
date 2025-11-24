@@ -1,18 +1,17 @@
-// src/services/PedidoService.jsx
 import axios from "axios";
 
 const API_URL = "https://koziapi.onrender.com/api/pedidos";
 
-// IDs por defecto para crear pedido desde el carrito
+// IDs por default
 const ESTADO_PAGADO_ID = 1; // Pagado
 const ENVIO_DEFAULT_ID = 1; // Chilexpress
 const PAGO_DEBITO_ID = 2;   // Débito
 
 const PedidoService = {
-  // ---------- FRONT USUARIO: CREAR PEDIDO ----------
+  // ---------- CREAR PEDIDO ----------
   crearPedido: async ({ total, usuarioId }) => {
     const body = {
-      fechaCreacion: new Date().toISOString(), // LocalDateTime
+      fechaCreacion: new Date().toISOString(),
       total,
       usuario: { id: usuarioId },
       estado: { id: ESTADO_PAGADO_ID },
@@ -24,7 +23,7 @@ const PedidoService = {
     return res.data;
   },
 
-  // ---------- ADMIN: CRUD PEDIDOS ----------
+  // ---------- CRUD PEDIDOS ----------
 
   getAll: async () => {
     try {
@@ -36,7 +35,6 @@ const PedidoService = {
     }
   },
 
-  // Para cambiar estado/envio/pago usamos PATCH
   updatePartial: async (id, data) => {
     try {
       const res = await axios.patch(`${API_URL}/${id}`, data);

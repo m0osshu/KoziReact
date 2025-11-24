@@ -1,8 +1,7 @@
-// src/pages/Carrito.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
-import "../styles/pages/Carrito.css"; // si no existe, no pasa nada, solo no habrá estilos extra
+import "../styles/pages/Carrito.css"; 
 
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -68,13 +67,11 @@ export default function Carrito() {
     try {
       setProcesandoCompra(true);
 
-      // 1. Crear pedido en la API
       const pedido = await PedidoService.crearPedido({
         total: totalPrecio,
         usuarioId: usuario.id,
       });
 
-      // 2. Crear líneas de productos para este pedido
       for (const item of items) {
         await ProductosPedidoService.crearLinea({
           pedidoId: pedido.id,
@@ -83,14 +80,10 @@ export default function Carrito() {
         });
       }
 
-      // 3. Vaciar carrito y cerrar modal
       clearCart();
       setMostrandoConfirmacion(false);
 
-      // 4. Mensaje de éxito
       alert("Compra realizada exitosamente.");
-      // Si quieres, podrías redirigir al home:
-      // navigate("/");
     } catch (error) {
       console.error("Error al procesar la compra:", error);
       alert("Ocurrió un error al procesar la compra. Inténtalo más tarde.");
@@ -165,7 +158,6 @@ export default function Carrito() {
         </>
       )}
 
-      {/* Modal de confirmación simple */}
       {mostrandoConfirmacion && (
         <div className="carrito-modal-backdrop">
           <div className="carrito-modal">

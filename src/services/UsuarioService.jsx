@@ -1,14 +1,12 @@
-// src/services/UsuarioService.jsx
 import axios from "axios";
 
 const API_URL = "https://koziapi.onrender.com/api/usuarios";
 
-// IDs por defecto para registro normal desde el front
+// IDs por defeault
 const DEFAULT_ROL_ID = 1;        // Rol "Usuario" normal (no admin)
 const DEFAULT_MEMBRESIA_ID = 2;  // STANDARD (según tu BD)
 
 const UsuarioService = {
-  // 🔹 Login
   login: async (email, password) => {
     try {
       const res = await axios.post(`${API_URL}/login`, {
@@ -22,7 +20,6 @@ const UsuarioService = {
     }
   },
 
-  // 🔹 Registro
   register: async ({ nombreUsuario, email, password, fotoPerfil }) => {
     try {
       const body = {
@@ -43,7 +40,6 @@ const UsuarioService = {
     }
   },
 
-  // 🔹 Admin: obtener todos los usuarios
   getAll: async () => {
     try {
       const res = await axios.get(API_URL);
@@ -54,7 +50,6 @@ const UsuarioService = {
     }
   },
 
-  // 🔹 Admin: obtener uno por id (por si lo necesitas después)
   getById: async (id) => {
     try {
       const res = await axios.get(`${API_URL}/${id}`);
@@ -65,7 +60,6 @@ const UsuarioService = {
     }
   },
 
-  // 🔹 Admin: actualización parcial (usa PATCH)
   updatePartial: async (id, data) => {
     try {
       const res = await axios.patch(`${API_URL}/${id}`, data);
@@ -76,7 +70,6 @@ const UsuarioService = {
     }
   },
 
-  // 🔹 Admin: eliminar usuario
   delete: async (id) => {
     try {
       await axios.delete(`${API_URL}/${id}`);

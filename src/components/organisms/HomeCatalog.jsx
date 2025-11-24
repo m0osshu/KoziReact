@@ -1,6 +1,3 @@
-// src/components/organisms/HomeCatalog.jsx
-// NOTA: clases "home-catalog", "home-catalog-title", "home-catalog-grid" creadas por ia
-
 import { useEffect, useState } from "react";
 import ProductoService from "../../services/ProductoService";
 import ProductCard from "../molecules/ProductCard";

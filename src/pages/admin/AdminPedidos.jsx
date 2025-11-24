@@ -15,7 +15,6 @@ export default function AdminPedidos() {
   const [editing, setEditing] = useState(null);
   const [filtroEmail, setFiltroEmail] = useState("");
 
-  // 👇 estado del formulario de estado/envío/pago
   const [formData, setFormData] = useState({
     estadoId: 1,
     envioId: 1,

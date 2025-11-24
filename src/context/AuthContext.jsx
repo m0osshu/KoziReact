@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
 import UsuarioService from "../services/UsuarioService";
 import DireccionService from "../services/DireccionService";
@@ -24,20 +23,15 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUsuario(null);
     localStorage.removeItem("kozi_usuario");
-    // El vaciado de carrito lo haremos desde la Navbar usando CartContext,
-    // para no acoplar contextos entre sí.
   };
 
   const register = async (data) => {
-    // data debe ser { nombreUsuario, email, password, fotoPerfil }
     const user = await UsuarioService.register(data);
 
-    // Crear dirección por defecto para este usuario
     if (user && user.id) {
       await DireccionService.crearDireccionPorDefecto(user.id);
     }
 
-    // Loguear automáticamente al usuario recién creado
     setUsuario(user);
     localStorage.setItem("kozi_usuario", JSON.stringify(user));
   };

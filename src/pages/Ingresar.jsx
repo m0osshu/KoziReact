@@ -1,4 +1,3 @@
-// src/pages/Ingresar.jsx
 import "../styles/global.css";
 import "../styles/components/molecules/LoginForm.css";
 import LoginForm from "../components/molecules/LoginForm";

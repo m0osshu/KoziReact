@@ -1,10 +1,8 @@
-// src/services/CategoriassService.jsx
 import axios from "axios";
 
 const API_URL = "https://koziapi.onrender.com/api/categoriass";
 
 const CategoriassService = {
-  // Obtener todas las relaciones producto-categoría
   getAll: async () => {
     try {
       const res = await axios.get(API_URL);
@@ -15,9 +13,6 @@ const CategoriassService = {
     }
   },
 
-  // Crear relación producto-categoría
-  // IMPORTANTE: el @PostMapping está como "/{id}", pero el {id} NO se usa en el controller.
-  // Podemos mandarle cualquier número en la URL (por ejemplo el id del producto).
   create: async ({ productoId, categoriaId }) => {
     try {
       const body = {
@@ -33,7 +28,6 @@ const CategoriassService = {
     }
   },
 
-  // Eliminar una relación por su id
   delete: async (id) => {
     try {
       await axios.delete(`${API_URL}/${id}`);

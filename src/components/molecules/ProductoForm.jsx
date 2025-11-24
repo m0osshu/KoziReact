@@ -1,4 +1,3 @@
-// src/components/molecules/ProductoForm.jsx
 import { useEffect, useState } from "react";
 import AdminFormField from "./AdminFormField";
 import "../../styles/components/molecules/Forms.css";
@@ -18,7 +17,6 @@ export default function ProductoForm({
     categoriaId: "",
   });
 
-  // Cargamos datos iniciales al abrir el modal
   useEffect(() => {
     if (initialData) {
       setFormData({

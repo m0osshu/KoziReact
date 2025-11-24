@@ -1,10 +1,8 @@
-// src/components/molecules/ProductDetail.jsx
-
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import Button from "../atoms/Button";
-import "../../styles/components/molecules/ProductDetail.css"; // opcional, si luego quieres estilos
+import "../../styles/components/molecules/ProductDetail.css";
 
 export default function ProductDetail({ producto, onVolver }) {
   const navigate = useNavigate();
@@ -46,12 +44,10 @@ export default function ProductDetail({ producto, onVolver }) {
 
   return (
     <div className="producto-detalle-layout">
-      {/* Imagen izquierda */}
       <div className="producto-detalle-imagen">
         {imagenUrl && <img src={imagenUrl} alt={nombre} />}
       </div>
 
-      {/* Info derecha */}
       <div className="producto-detalle-info">
         <h1 className="producto-detalle-titulo">{nombre}</h1>
 

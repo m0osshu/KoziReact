@@ -1,5 +1,3 @@
-// src/components/organisms/AboutSection.jsx
-
 import aboutData from "../../data/aboutData";
 import "../../styles/components/organisms/AboutSection.css";
 

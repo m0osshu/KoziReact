@@ -1,6 +1,5 @@
-// src/pages/RestablecerContraseña.jsx
 import "../styles/global.css";
-import "../styles/pages/RestablecerContraseña.css"; // NOTA: clase "reset-page" creada por ia
+import "../styles/pages/RestablecerContraseña.css"; 
 import ResetPasswordForm from "../components/molecules/ResetPasswordForm";
 
 export default function RestablecerContraseña() {

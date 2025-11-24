@@ -1,6 +1,5 @@
-// src/components/organisms/BlogsSection.jsx
 import "../../styles/global.css";
-import "../../styles/components/organisms/BlogsSection.css"; // aquí irá el CSS del blog
+import "../../styles/components/organisms/BlogsSection.css"; 
 import blogData from "../../data/blogData";
 
 export default function BlogsSection() {
