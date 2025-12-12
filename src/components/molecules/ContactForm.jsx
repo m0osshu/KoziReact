@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../../styles/components/molecules/ContactForm.css";
+import React from 'react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({

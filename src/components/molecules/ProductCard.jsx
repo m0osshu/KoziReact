@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/components/molecules/ProductCard.css";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
+import React from 'react';
 
 export default function ProductCard({ producto }) {
   const navigate = useNavigate();

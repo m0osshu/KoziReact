@@ -1,6 +1,7 @@
 import "../../styles/global.css";
 import "../../styles/components/organisms/BlogsSection.css"; 
 import blogData from "../../data/blogData";
+import React from 'react';
 
 export default function BlogsSection() {
   return (

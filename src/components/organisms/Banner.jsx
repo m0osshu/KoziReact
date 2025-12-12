@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../../styles/components/organisms/Banner.css"; 
+import React from 'react';
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

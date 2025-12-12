@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductoService from "../../services/ProductoService";
 import ProductCard from "../molecules/ProductCard";
+import React from 'react';
 import "../../styles/components/organisms/HomeCatalog.css";
 
 export default function HomeCatalog() {

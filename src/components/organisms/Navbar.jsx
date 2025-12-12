@@ -3,6 +3,7 @@ import "../../styles/components/organisms/Navbar.css";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useState } from "react";
+import React from 'react';
 
 export default function Navbar() {
   const { usuario, logout } = useAuth();

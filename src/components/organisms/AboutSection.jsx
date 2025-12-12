@@ -1,5 +1,6 @@
 import aboutData from "../../data/aboutData";
 import "../../styles/components/organisms/AboutSection.css";
+import React from 'react';
 
 
 export default function AboutSection() {

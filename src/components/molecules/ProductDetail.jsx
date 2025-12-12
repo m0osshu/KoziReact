@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import Button from "../atoms/Button";
 import "../../styles/components/molecules/ProductDetail.css";
+import React from 'react';
 
 export default function ProductDetail({ producto, onVolver }) {
   const navigate = useNavigate();

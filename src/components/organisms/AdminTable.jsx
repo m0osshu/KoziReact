@@ -1,4 +1,5 @@
 import "../../styles/components/organisms/AdminTable.css";
+import React from 'react';
 
 export default function AdminTable({
   columns,

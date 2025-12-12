@@ -1,4 +1,5 @@
 import "../../styles/components/organisms/AdminModal.css";
+import React from 'react';
 
 export default function AdminModal({
   title,
